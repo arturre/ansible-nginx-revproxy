@@ -1,9 +1,8 @@
 ansible-nginx-revproxy
 =========
-[![Build Status](https://img.shields.io/travis/hispanico/ansible-nginx-revproxy.svg?style=flat-square)](https://travis-ci.org/hispanico/ansible-nginx-revproxy)
-[![Galaxy](https://img.shields.io/badge/galaxy-hispanico.nginx--revproxy-blue.svg?style=flat-square)](https://galaxy.ansible.com/hispanico/nginx-revproxy/)
 
 Install and configures Nginx as reverse proxy for multiple website.
+Artur: added support for Mutual Auth TLS
 
 Requirements
 ------------
@@ -44,6 +43,7 @@ nginx_revproxy_sites:                                         # List of sites to
       - { backend_address: 192.168.0.201, backend_port: 8080 }
     listen: 9000                                              # Specify which port you want to listen to with clear HTTP, or leave undefined for 80
     listen_ssl: 9001                                          # Specify which port you want to listen to with HTTPS, or leave undefined for 443
+    check_client_ssl: on                                      # Set to value  on|off|optional|optional_no_ca if you want to use mutual auth for TLS, more details http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client
     ssl: true                                                 # Set to True if you want to redirect http to https
     letsencrypt: false                                        # Set to True if you want use letsencrypt
 ```
@@ -74,6 +74,7 @@ Example Playbook
             - { backend_address: 192.168.0.100, backend_port: 80 }
             - { backend_address: 192.168.0.101, backend_port: 80 }
           ssl: true
+          check_client_ssl: true
           letsencrypt: false
 ```
 
