@@ -2,7 +2,10 @@ ansible-nginx-revproxy
 =========
 
 Install and configures Nginx as reverse proxy for multiple website.
-Artur: added support for Mutual Auth TLS
+
+Artur: added support for Mutual Auth TLS in nginx
+
+Artur: this article https://fardog.io/blog/2017/12/30/client-side-certificate-authentication-with-nginx/ can be used to create client certs for auth. Playbook assums that CA used for client side certs is /etc/ssl/certs/client.ca.crt
 
 Requirements
 ------------
